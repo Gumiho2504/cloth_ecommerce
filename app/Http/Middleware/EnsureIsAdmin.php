@@ -15,9 +15,11 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!auth()->check() || !auth()->user()->isAdmin()){
-            abort(403,"Unauthorized action.");
+        if (request()->user() === null || !request()->user()->isAdmin()) {
+            //dd(['401', 'Unauthorized'], request()->user()->isAdmin());
+            return redirect()->route('admin.login');
         }
+
         return $next($request);
     }
 }

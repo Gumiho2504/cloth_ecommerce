@@ -12,8 +12,10 @@ class Productshow extends Component
 {
     public $product;
 
-    public $color;
-    public $size;
+    public int $color_id;
+    public int $size_id;
+    public $stockByColor;
+
     public function placeholder()
     {
         return <<<'HTML'
@@ -26,12 +28,20 @@ class Productshow extends Component
     public function mount($slug)
     {
         $this->product = Product::where('slug', $slug)->first();
+        $this->color_id = $this->product->colors()->first()->id;
+        $this->size_id = $this->product->sizes()->first()->id;
+        // dump([$this->color_id, $this->size_id]);
     }
 
     #[Url()]
     public function render()
     {
 
+
+
+
+        $variation = $this->product->variations()->where('color_id', $this->color_id)->where('size_id', $this->size_id)->first();
+        $this->stockByColor = $variation->stock;
         return view('livewire.products.productshow')->with('product', $this->product);
     }
 }

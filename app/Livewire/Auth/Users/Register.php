@@ -38,8 +38,8 @@ class Register extends Component implements AuthService
         event(new Registered($user));
 
         Auth::login($user);
-        dd(Auth::user());
-        //return redirect()->route('home');
+
+        return redirect()->route('home');
     }
 
 

@@ -9,24 +9,23 @@
         @endforeach
     </nav>
     <div class="w-4/12 flex space-x-3">
-        <x-ri-shopping-bag-line class="w-6 h-6 text-amber-800"/>
+        <x-ri-shopping-bag-line class="w-6 h-6 text-amber-800" />
         <h2 class=" text-xl font-bold">GUMIHO</h2>
 
     </div>
 
     <div class="flex space-x-4 justify-between items-center">
-        <x-ri-search-2-line class="icon-size"/>
+        <x-ri-search-2-line class="icon-size" />
         <x-ri-notification-line class="icon-size" />
-        <button class="flex justify-center items-center space-x-2 text-sm py-2 px-3 rounded-full border border-slate-900">
+        <button
+            class="flex justify-center items-center space-x-2 text-sm py-2 px-3 rounded-full border border-slate-900">
             <span>My Card</span>
-            <x-ri-shopping-bag-line class="w-4 h-4 text-slate-800"/>
+            <x-ri-shopping-bag-line class="w-4 h-4 text-slate-800" />
         </button>
         <div class="bar"></div>
-        <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA6zq21NVsOxQs4PL4rJU30aiCXEkVrwB-Y19RYowqhUGklgM3SNfj6e-L1UU3mfuyByM&usqp=CAU" 
-            alt="profile"
-            class="w-9 h-9 rounded-full shadow-sm shadow-slate-300"
-            >
-        </div>
+        <a href="{{ route('profile') }}">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA6zq21NVsOxQs4PL4rJU30aiCXEkVrwB-Y19RYowqhUGklgM3SNfj6e-L1UU3mfuyByM&usqp=CAU"
+                alt="profile" class="w-9 h-9 rounded-full shadow-sm shadow-slate-300">
+        </a>
     </div>
 </div>

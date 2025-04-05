@@ -1,32 +1,30 @@
 <?php
 
+use App\Enums\Role;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Auth\Admins\Admin;
+
+use App\Livewire\Auth\Users\Login;
 use App\Livewire\Auth\Users\Register;
 use App\Livewire\Pages\About;
 use App\Livewire\Pages\Category;
 use App\Livewire\Pages\Contact;
 use App\Livewire\Pages\Home;
+use App\Livewire\Products\Productshow;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Livewire\Auth\Users\Profile;
 
 Route::middleware('guest')->group(function () {
     Route::get("/register", Register::class)->name("register");
-
-    // Volt::route('login', 'pages.auth.login')
-    //     ->name('login');
-
-    // Volt::route('forgot-password', 'pages.auth.forgot-password')
-    //     ->name('password.request');
-
-    // Volt::route('reset-password/{token}', 'pages.auth.reset-password')
-    //     ->name('password.reset');
-    Route::get("/home", Home::class)->name("home");
-    Route::get("/category", Category::class)->name("category");
-    Route::get("/about", About::class)->name("about");
-    Route::get("/contact", Contact::class)->name("contact");
+    Route::get("/login", Login::class)->name("login");
 });
 
+
+
 Route::middleware('auth')->group(function () {
+
+    Route::get('profile', Profile::class)->name('profile');
     // Volt::route('verify-email', 'pages.auth.verify-email')
     //     ->name('verification.notice');
 
@@ -39,6 +37,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-//     Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
-// });
+
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->as('admin.')->group(function () {
+    Route::get('/', Admin::class)->name('dashboard');
+});

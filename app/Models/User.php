@@ -48,6 +48,7 @@ class User extends AuthUser
 
     public function isAdmin()
     {
-        return $this->role === \App\Enums\Role::ADMIN;
+        //dump($this->role);
+        return $this->role === \App\Enums\Role::ADMIN->value;
     }
 }
