@@ -1,15 +1,9 @@
 <?php
 
+use App\Livewire\Products\Productshow;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::redirect('/', '/home', 301);
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-
-require __DIR__.'/auth.php';
+Route::get('/product/{slug}', Productshow::class)->lazy()->name('product.show');
+require __DIR__ . '/auth.php';

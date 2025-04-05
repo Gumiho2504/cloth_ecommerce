@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import '../../vendor/livewire/flux/dist/flux.css';
+@custom-variant dark (&:where(.dark, .dark *)); */
+
+
+.icon-size {
+    @apply w-6 h-6 text-slate-800 fill-current;
+}
+
+.bar{
+    width: 1px;
+    @apply bg-slate-600 h-6;
+}
+
+p{
+    @apply text-xs text-slate-200;
+}
