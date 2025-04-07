@@ -10,7 +10,14 @@
     </nav>
     <div class="w-4/12 flex space-x-3">
         <x-ri-shopping-bag-line class="w-6 h-6 text-amber-800" />
-        <h2 class=" text-xl font-bold">GUMIHO</h2>
+        @php
+            $username = 'Guest';
+            if (Auth::check()) {
+                $username = Auth::user()->name;
+            }
+        @endphp
+        <h2 class=" text-xl font-bold">{{ $username }}</h2>
+
 
     </div>
 

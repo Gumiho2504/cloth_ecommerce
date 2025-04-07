@@ -17,7 +17,7 @@ class ProductVariationFactory extends Factory
     public function definition(): array
     {
         return [
-            'stock' => $this->faker->numberBetween(0, 20),
+            'stock' => $this->faker->numberBetween(0, 10),
         ];
     }
 }

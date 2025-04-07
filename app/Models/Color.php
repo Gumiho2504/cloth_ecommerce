@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,8 +28,28 @@ class Color extends Model
             'Orange' => 'bg-orange-500',
             'Purple' => 'bg-purple-500',
             'Pink' => 'bg-pink-500',
+            default => 'bg-gray-300', // fallback if name doesn't match
         };
     }
+
+    public function borderColor(): string
+    {
+
+        return match ($this->name) {
+            'Red' => 'border-red-500',
+            'Green' => 'border-green-500',
+            'Blue' => 'border-blue-500',
+            'Yellow' => 'border-yellow-500',
+            'Black' => 'border-black',
+            'White' => 'border-white',
+            'Gray' => 'border-gray-500',
+            'Orange' => 'border-orange-500',
+            'Purple' => 'border-purple-500',
+            'Pink' => 'border-pink-500',
+            default => 'border-gray-300', // fallback if name doesn't match
+        };
+    }
+
 
     public function productColors()
     {

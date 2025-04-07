@@ -5,12 +5,15 @@ namespace App\Livewire\Pages;
 use Livewire\Component;
 use Livewire\Attributes\layout;
 use Livewire\Attributes\Url;
-use App\Models\Product;
+
+
+use Livewire\WithPagination;
 
 #[layout('layouts.app')]
 class Home extends Component
 {
-
+    use WithPagination;
+    // public CartItemService $cartItemService;
     public $size;
 
     public $search;
@@ -25,11 +28,15 @@ class Home extends Component
     public $color;
 
     public $results = [];
-    public $products = [];
+    // public $products = [];
+
+
+    public function mount() {}
 
 
     public function render()
     {
+
 
 
         $this->filters = [
@@ -44,43 +51,9 @@ class Home extends Component
             $this->results = \App\Models\Product::where('name', 'like', '%' . $this->search . '%')->get();
         }
 
-        $this->products = \App\Models\Product::filter($this->filters)->latest()->get();
-
+        $products = \App\Models\Product::filter($this->filters)->paginate(8);
         return view(
-            'livewire.pages.home'
-        );
-    }
-
-
-    public function addToCart(Product $product)
-    {
-
-        if (auth()->user()->carts()->exists()) {
-            if (auth()->user()->carts()->first()->cartItems()->where('product_id', $product->id)->exists()) {
-                $cartItem = auth()->user()->carts()->first()->cartItems()->where('product_id', $product->id)->first();
-                $cartItem->update(['quantity' => $cartItem->quantity + 1]);
-                $cartItem->update(['total_price' => $cartItem->quantity * $cartItem->uni_price]);
-                auth()->user()->carts()->first()->update(['total_amount' => auth()->user()->carts()->first()->cartItems()->sum('total_price')]);
-            } else {
-                auth()->user()->carts()->first()->cartItems()->create(
-                    [
-                        'product_id' => $product->id,
-                        'quantity' => 1,
-                        'total_price' => $product->price * 1,
-                        'uni_price' => $product->price,
-                    ]
-
-                );
-            }
-
-            auth()->user()->carts()->first()->update(['total_amount' => auth()->user()->carts()->first()->cartItems()->sum('total_price')]);
-            return redirect()->route('profile');
-        } else {
-            auth()->user()->carts()->create(
-                [
-                    'total_amount' => 0,
-                ]
-            );
-        }
+            'livewire.pages.home',
+        )->with('products', $products);
     }
 }

@@ -5,14 +5,16 @@ namespace App\Livewire\Products;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\Attributes\layout;
+use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Url;
 
-#[layout('layouts.guest')]
+#[layout('layouts.app')]
 class Productshow extends Component
 {
     public $product;
-
+    #[Url()]
     public int $color_id;
+    #[Url()]
     public int $size_id;
     public $stockByColor;
 
@@ -25,6 +27,7 @@ class Productshow extends Component
         </div>
         HTML;
     }
+
     public function mount($slug)
     {
         $this->product = Product::where('slug', $slug)->first();
@@ -33,15 +36,30 @@ class Productshow extends Component
         // dump([$this->color_id, $this->size_id]);
     }
 
-    #[Url()]
+
     public function render()
     {
-
-
-
 
         $variation = $this->product->variations()->where('color_id', $this->color_id)->where('size_id', $this->size_id)->first();
         $this->stockByColor = $variation->stock;
         return view('livewire.products.productshow')->with('product', $this->product);
+    }
+
+    public function selectSize(int $id)
+    {
+
+        $this->size_id = $id;
+    }
+
+    public function selectColor(int $id)
+    {
+
+        $this->color_id = $id;
+    }
+
+
+    public function test()
+    {
+        dd("test");
     }
 }

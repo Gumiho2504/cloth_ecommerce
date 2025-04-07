@@ -78,44 +78,22 @@
             <br>
 
         </div>
-        <div class="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4 ">
+        <div class="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-4 items-start">
 
             @foreach ($products as $product)
-                <article class=" flex flex-col space-y-3 border border-slate-900 p-3">
-                    <a href="{{ route('product.show', $product->slug) }}"
-                        class=" font-bold text-blue-500 text-2xl">{{ $product->name }}</a>
-                    <span>${{ $product->price }}</span>
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
-                    <div class="flex space-x-2">
-                        @foreach ($product->colors as $color)
-                            <a href="">{{ $color->name }}</a>
-                        @endforeach
-                    </div>
-                    <div class="flex space-x-2">
-                        @foreach ($product->sizes as $size)
-                            <a href="">{{ $size->type }}</a>
-                        @endforeach
-                    </div>
-                    @php
-                        $stock = 0;
-                        foreach ($product->variations as $variation) {
-                            $stock += $variation->stock;
-                        }
-
-                    @endphp
-                    <h2 class=" text-cyan-600">{{ $product->category->name }}</h2>
-                    <h2>Total Stock = {{ $product->variations()->sum('stock') }}</h2>
-                    <h2>{{ $product->created_at->diffForHumans() }}</h2>
-                    <button wire:click="addToCart({{ $product }})">Add To Cart</button>
-                </article>
+                <livewire:products.product-cart :product="$product" :key="$product->id" />
             @endforeach
+
         </div>
+
 
     </div>
 
 
 
 
-
+    <div>
+        {{ $products->links() }}
+    </div>
 
 </div>
