@@ -1,4 +1,4 @@
-<div>
+<div class=" px-4 overflow-x-hidden">
     <div class=" h-60 bg-red-600 w-full rounded-lg relative mt-20">
         <img src="https://img.freepik.com/premium-photo/3d-render-brown-cloth-iridescent-holographic-foil-abstract-art-fashion-background_387680-1447.jpg"
             alt="bgimage" class="w-full h-full rounded-lg relative">
@@ -14,8 +14,8 @@
     </div>
 
 
-    <div class=" flex space-x-5 mt-4">
-        <div class=" w-3/12 border border-slate-200 rounded-md p-4">
+    <div class="w-full flex-col flex space-x-0 mt-4 sm:flex-row space-y-3 sm:space-x-5">
+        <div class="w-full sm:w-3/12 border border-slate-200 rounded-md p-4">
             <div>
                 <h1 class=" text-2xl text-slate-800 font-bold">Filter Product</h1>
             </div>

@@ -38,7 +38,6 @@ class Home extends Component
     {
 
 
-
         $this->filters = [
             "search" => $this->search,
             "size" => $this->size,

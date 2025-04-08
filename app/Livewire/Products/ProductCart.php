@@ -19,20 +19,8 @@ class ProductCart extends Component
 
     public function addToCart()
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
 
-        if (auth()->user()->carts()->exists()) {
-
-            CartItemService::addItemToCart(auth()->user()->carts()->first()->id, $this->product->id, $this->product->price, 1);
-        } else {
-
-            $cart = CartService::creatCart(auth()->user()->id);
-            CartItemService::addItemToCart($cart->id, $this->product->id, $this->product->price, 1);
-        }
-
-        return redirect()->route('profile');
+        return $this->redirectRoute('product.show', $this->product->slug, true);
     }
     public function render()
     {

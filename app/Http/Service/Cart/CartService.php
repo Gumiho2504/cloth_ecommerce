@@ -26,4 +26,6 @@ class CartService implements ICartService
         Gate::authorize('delete', Cart::findOrFail($cart_id));
         Cart::findOrFail($cart_id)->delete();
     }
+
+
 }

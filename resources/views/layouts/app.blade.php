@@ -15,11 +15,11 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-   
+
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen dark:bg-gray-900 px-8">
+    <div class="min-h-screen dark:bg-gray-900 px-1 sm:px-8">
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -29,18 +29,18 @@
                 </div>
             </header>
         @endif
-       
 
-        <livewire-layout.navigation/>
-       
-      
+
+        <livewire-layout.navigation />
+
+
         <main>
             {{ $slot }}
 
         </main>
     </div>
     @livewireScripts
-    
+
 </body>
 
 </html>
