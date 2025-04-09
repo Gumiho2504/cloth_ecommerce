@@ -10,6 +10,5 @@ interface ICartService
 {
     public static function creatCart($user_id): Cart;
     public static function getCart($user_id);
-    public static function deleteCart(User $user, $cart_id);
-
+    public static function deleteCart($user_id, $cart_id);
 }

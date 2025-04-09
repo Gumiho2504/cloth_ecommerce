@@ -1,10 +1,9 @@
 <div class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+
             <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                <img class="w-full dark:hidden"
-                    src="https://s3.ap-south-1.amazonaws.com/modelfactory.in/upload/2023/Jan/12/blog_images/805400762d8cd9113cc51f3e5aee53f9.jpg"
-                    alt="" />
+                <img class="w-full dark:hidden" src="{{ $image_path }}" alt="" />
                 <img class="w-full hidden dark:block"
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
             </div>

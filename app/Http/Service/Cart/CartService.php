@@ -18,14 +18,18 @@ class CartService implements ICartService
 
         ]);
     }
-    public static function getCart($user_id) {}
-
-
-    public static function deleteCart(User $user, $cart_id)
+    public static function getCart($user_id)
     {
-        Gate::authorize('delete', Cart::findOrFail($cart_id));
-        Cart::findOrFail($cart_id)->delete();
+        $cart =  Cart::where('user_id', $user_id)->first();
+        return $cart;
     }
 
 
+    public static function deleteCart($user_id, $cart_id)
+    {
+
+        $cart = Cart::where('user_id', $user_id)->where('id', $cart_id)->first();
+        Gate::authorize('delete', $cart);
+        $cart->delete();
+    }
 }

@@ -1,9 +1,7 @@
 <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
     <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
         <a href="#" class="shrink-0 md:order-1">
-            <img class="h-20 w-20 dark:hidden"
-                src="https://s3.ap-south-1.amazonaws.com/modelfactory.in/upload/2023/Jan/12/blog_images/805400762d8cd9113cc51f3e5aee53f9.jpg"
-                alt="imac image" />
+            <img class="h-20 w-20 dark:hidden" src="{{ $image_path }}" alt="imac image" />
             <img class="hidden h-20 w-20 dark:block"
                 src="https://s3.ap-south-1.amazonaws.com/modelfactory.in/upload/2023/Jan/12/blog_images/805400762d8cd9113cc51f3e5aee53f9.jpg"
                 alt="imac image" />

@@ -40,7 +40,7 @@ class Product extends Model
         return $this->belongsToMany(Size::class, 'product_sizes');
     }
 
-    public function image()
+    public function images()
     {
         return $this->hasManyThrough(Color::class, Image::class);
     }

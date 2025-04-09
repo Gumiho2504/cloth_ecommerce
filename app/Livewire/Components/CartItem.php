@@ -3,6 +3,7 @@
 namespace App\Livewire\Components;
 
 use App\Http\Service\Cart\CartItemService;
+use App\Models\Image;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Rule;
@@ -16,12 +17,15 @@ class CartItem extends Component
     #[Rule('min:0|max:10')]
     public $quantity;
     public $cart;
+    public $image_path;
 
     public function mount($cartItem, $cart)
     {
         $this->item = $cartItem;
         $this->quantity = $this->item->quantity;
         $this->cart = $cart;
+        $this->image_path = Image::where('product_id', $this->item->product_id)->where('color_id', $this->item->color_id)
+            ->first()->path;
     }
 
 

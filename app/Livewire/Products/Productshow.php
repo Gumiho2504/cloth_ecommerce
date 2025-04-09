@@ -4,6 +4,7 @@ namespace App\Livewire\Products;
 
 use App\Http\Service\Cart\CartItemService;
 use App\Http\Service\Cart\CartService;
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -23,6 +24,7 @@ class Productshow extends Component
     public int $size_id;
     public $stockByColor;
     public $quantity = 1;
+    public $image_path;
 
     public function placeholder()
     {
@@ -40,7 +42,8 @@ class Productshow extends Component
         $this->color_id = $this->product->colors()->first()->id;
         $this->size_id = $this->product->sizes()->first()->id;
         // dump([$this->color_id, $this->size_id]);
-
+        $this->image_path = Image::where('product_id', $this->product->id)->where('color_id', $this->color_id)
+            ->first()->path;
     }
 
 
@@ -61,6 +64,8 @@ class Productshow extends Component
     {
 
         $this->color_id = $id;
+        $this->image_path = Image::where('product_id', $this->product->id)->where('color_id', $this->color_id)
+            ->first()->path;
     }
 
     public function onChangeQuantity($isAdd)

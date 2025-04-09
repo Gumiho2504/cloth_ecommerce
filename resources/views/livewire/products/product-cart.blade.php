@@ -1,12 +1,11 @@
 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="p-8 rounded-t-lg"
-            src="https://s3.ap-south-1.amazonaws.com/modelfactory.in/upload/2023/Jan/12/blog_images/805400762d8cd9113cc51f3e5aee53f9.jpg"
-            alt="product image" />
+        <img class="p-8 rounded-t-lg" src="{{ $product->image }}" alt="product image" />
     </a>
     <div class="px-5 pb-5">
         <a href="{{ route('product.show', $product->slug) }}">
-            <h5 class="whitespace-nowrap overflow-hidden text-ellipsis text-base font-semibold tracking-tight sm:text-xl   text-gray-900 dark:text-white">
+            <h5
+                class="whitespace-nowrap overflow-hidden text-ellipsis text-base font-semibold tracking-tight sm:text-xl   text-gray-900 dark:text-white">
                 {{ $product->name }}</h5>
         </a>
         <div>

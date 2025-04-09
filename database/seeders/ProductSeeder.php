@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class ProductSeeder extends Seeder
 {
@@ -19,8 +21,8 @@ class ProductSeeder extends Seeder
         foreach ($products as $product) {
             $sizes = \App\Models\Size::all();
             $product->sizes()->attach($sizes->pluck('id'));
-
-            $selecteColors = $colors->random(4);
+            $product_colors = rand(1, 4);
+            $selecteColors = $colors->random($product_colors);
             $product->colors()->attach($selecteColors->pluck('id'));
 
             foreach ($selecteColors as $color) {
@@ -33,6 +35,13 @@ class ProductSeeder extends Seeder
                         ]
                     )->create();
                 }
+                Image::factory()->sequence(
+                    [
+                        'product_id' => $product->id,
+                        'color_id' => $color->id,
+
+                    ]
+                )->create();
             }
         }
     }

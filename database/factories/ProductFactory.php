@@ -18,12 +18,26 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $imageUrl = [
+            'https://pagedone.io/asset/uploads/1701167607.png',
+            'https://pagedone.io/asset/uploads/1701167652.png',
+            'https://pagedone.io/asset/uploads/1701167668.png',
+            'https://pagedone.io/asset/uploads/1701167681.png',
+            'https://pagedone.io/asset/uploads/1701167697.png',
+            'https://pagedone.io/block_preview_image/Order-Summaries-4.jpg',
+            'https://pagedone.io/block_preview_image/Order-Summaries-4.jpg',
+            'https://pagedone.io/block_preview_image/Order-Summaries-4.jpg',
+            'https://pagedone.io/block_preview_image/Order-Summaries-5.jpg',
+            'https://pagedone.io/block_preview_image/Order-Summaries-5.jpg',
+            'https://pagedone.io/block_preview_image/order-summaries-main7.jpg',
+            'https://pagedone.io/block_preview_image/order-summaries-main8.jpg'
+        ];
         return [
             'name' => $this->faker->name,
             'category_id' => Category::all()->random()->id,
             'description' => $this->faker->paragraph(200),
-            'price' => $this->faker->numberBetween(10,100),
-            'image' => $this->faker->imageUrl   
+            'price' => $this->faker->numberBetween(10, 100),
+            'image' => $imageUrl[array_rand($imageUrl)],
         ];
     }
 }

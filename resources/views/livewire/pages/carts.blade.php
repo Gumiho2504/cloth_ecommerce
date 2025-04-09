@@ -6,13 +6,21 @@
             <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
 
 
-                @foreach ($carts as $cart)
+                @forelse ($carts as $cart)
                     <div class="space-y-6">
-                        @foreach ($cart->cartItems as $item)
+                        @forelse ($cart->cartItems as $item)
                             <livewire:components.cart-item :cart="$cart" :cartItem="$item" :key="$item->id">
-                        @endforeach
+                            @empty
+                                <p class=" text-md text-slate-900">No Cart Item <a href="{{ route('home') }}"
+                                        class=" text-red-400 underline">shop now
+                                        -></a></p>
+                        @endforelse
                     </div>
-                @endforeach
+                @empty
+                    <p class=" text-md text-slate-900">No Cart <a href="{{ route('home') }}"
+                            class=" text-red-400 underline">shop now
+                            -></a></p>
+                @endforelse
 
 
 
@@ -49,12 +57,14 @@
                         <dl
                             class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                             <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                            <dd class="text-base font-bold text-gray-900 dark:text-white">${{ $cart->total_amount }}
+
+                            <dd class="text-base font-bold text-gray-900 dark:text-white">
+                                ${{ $cart->total_amount ?? 0 }}
                             </dd>
                         </dl>
                     </div>
 
-                    <a href="#"
+                    <a href="#" wire:click.prevent="placeOrder()"
                         class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed
                         to Checkout</a>
 

@@ -14,6 +14,7 @@ use App\Livewire\Products\Productshow;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Livewire\Auth\Users\Profile;
+use App\Livewire\Pages\Order;
 
 Route::middleware('guest')->group(function () {
     Route::get("/register", Register::class)->name("register");
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     // Volt::route('confirm-password', 'pages.auth.confirm-password')
     //     ->name('password.confirm');
     Route::get('carts', App\Livewire\Pages\Carts::class)->name('carts');
+    Route::get('order-list', Order::class)->name('order-list');
 });
 
 

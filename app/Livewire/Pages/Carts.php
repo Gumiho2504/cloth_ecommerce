@@ -4,6 +4,7 @@ namespace App\Livewire\Pages;
 
 use App\Http\Service\Cart\CartItemService;
 use App\Http\Service\Cart\CartService;
+use App\Http\Service\Order\OrderService;
 use App\Models\Cart;
 use App\Models\CartItem;
 use Illuminate\Support\Facades\Auth;
@@ -45,5 +46,11 @@ class Carts extends Component
         $item->update([
             'qautity' => $request['']
         ]);
+    }
+
+    public function placeOrder()
+    {
+        OrderService::placeOrder(Auth::id());
+        return redirect(route('order-list'));
     }
 }
