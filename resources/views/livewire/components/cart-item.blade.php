@@ -59,6 +59,20 @@
                     Remove
                 </button>
             </div>
+            <div>
+                @if ($this->isInStock())
+                    <p
+                        class=" text-green-400 p-1 border border-green-400 rounded-full  flex justify-center items-center">
+                        In Stock</p>
+                @else
+                    <p class=" text-red-400 p-1 border border-red-400 rounded-full  flex justify-center items-center">
+                        Out of Stock</p>
+                @endif
+
+
+            </div>
         </div>
+
+
     </div>
 </div>

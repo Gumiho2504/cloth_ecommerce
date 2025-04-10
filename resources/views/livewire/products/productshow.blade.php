@@ -86,11 +86,18 @@
                     {{ $stockByColor > 0 ? 'Stock: ' . $stockByColor : 'No Stock' }}
                 </div>
 
+                @php
+                    $disable = $stockByColor > 0 ? false : true;
+                @endphp
+
 
                 <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
                     <button wire:click="addToCart()"
-                        class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-blue-600 rounded-lg border border-gray-200 hover:bg-blue-500 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                        role="button">
+                        class="rounded-lg border flex items-center justify-center py-2.5 px-5 text-sm font-medium  focus:z-10 focus:ring-4 focus:ring-gray-100
+                        dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700
+                        {{ $disable ? 'text-slate-300 border-slate-200' : 'text-white focus:outline-none bg-blue-600  border-gray-200 hover:bg-blue-500 hover:text-primary-700' }}
+                        "
+                        role="button" {{ $disable ? 'disabled' : '' }}>
                         <svg class="w-5 h-5 -ms-2 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

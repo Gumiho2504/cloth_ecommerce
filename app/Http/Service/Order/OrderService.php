@@ -13,12 +13,18 @@ class OrderService implements IOrderService
 {
     public static function placeOrder($user_id)
     {
+
         $cart = CartService::getCart($user_id);
-        $order = self::createOrder($cart);
-        self::createOrderItems($order, $cart);
-        CartService::deleteCart($user_id, $cart->id);
-        return $order;
+
+        if ($cart->cartItems->count() > 0) {
+            $order = self::createOrder($cart);
+            self::createOrderItems($order, $cart);
+            CartService::deleteCart($user_id, $cart->id);
+            return $order;
+        }
+        return null;
     }
+
     public static function getOrders($user_id)
     {
         return Order::with('orderItems')->where('user_id', $user_id)->get();
@@ -51,10 +57,11 @@ class OrderService implements IOrderService
 
             $stock = ProductVariation::where('product_id', $item->product_id)
                 ->where('color_id', $item->color_id)->where('size_id', $item->size_id)->first();
-            if ($stock->stock < $item->quantity) {
 
-                return redirect()->back()->with('error', 'Out of stock');
-            }
+            // if ($stock->stock < $item->quantity) {
+            //     //dd("ff");
+            //     return redirect()->back()->with('error', 'Out of stock');
+            // }
 
 
             ProductVariation::where('product_id', $item->product_id)

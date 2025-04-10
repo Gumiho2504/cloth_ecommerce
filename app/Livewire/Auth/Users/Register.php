@@ -7,10 +7,10 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
-
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('layouts.guest')]
 class Register extends Component implements AuthService
 {
     public $name;
@@ -58,6 +58,6 @@ class Register extends Component implements AuthService
     public function render()
     {
 
-        return view('livewire.auth.users.register')->layout('layouts.guest');
+        return view('livewire.auth.users.register');
     }
 }

@@ -1,6 +1,11 @@
 <div>
     <h1 class=" text-3xl text-slate-900 font-extrabold">Order Sumery :</h1>
-
+    @if (session('success'))
+        <div
+            class="p-4 border border-l-4 border-green-500 rounded-md animate-fade-in duration-1000 delay-200 ease-in-out">
+            <p class="text-md text-green-600">{{ session('success') }}</p>
+        </div>
+    @endif
     <div class="mt-4 flex flex-col space-y-3">
         @forelse ($orders as $order)
             <div class="border border-dotted rounded-xl p-4 max-w-md">

@@ -1,35 +1,87 @@
-<div class="w-full h-full mx-auto my-auto flex justify-center items-center bg-red-200">
-    <form action="" wire:submit.prevent="register">
-        <div
-            class=" flex flex-col space-y-3 mx-auto my-auto w-min h-min p-4 border border-slate-900 justify-start items-start">
+<div class="min-h-screen flex items-center justify-center relative">
+    <div class=" w-1/2 relative min-h-screen flex justify-between items-center  bg-amber-200 ">
 
-            <div>
-                <x-input-label value="Name" />
-                <x-text-input placeholder="Enter your name" wire:model="name" />
-                <x-input-error :messages="$errors->get('name')" />
+        <div class=" bg-red-400">
+            <img src="{{ asset('image/girl.png') }}" alt="" class="max-w-sm max-h-sm absolute bottom-0">
+        </div>
+        <div>
+            <h1 class=" text-8xl font-extrabold">Welcome To</h1>
+            <h1 class=" text-8xl font-extrabold">Gumiho Shop</h1>
+        </div>
+    </div>
+
+    <div class=" max-w-md mx-auto my-auto">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
+            </ul>
+        </nav>
+        <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+
+        <!-- Display success message (if redirected after login) -->
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                {{ session('success') }}
             </div>
+        @endif
+
+        <!-- Display error message -->
+        {{-- @if ($errorMessage)
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                {{ $errorMessage }}
+            </div>
+        @endif --}}
+
+        <form wire:submit.prevent="register" class="space-y-4">
+            @csrf
             <div>
-                <x-input-label value="Email" />
-                <x-text-input placeholder="Enter your email" wire:model="email" />
-                @error('email')
-                    <span class="text-red-600">{{ $message }}</span>
+                <label for="email" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" wire:model="name" class="mt-1 block w-full border rounded-md p-2">
+                @error('name')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
             <div>
-                <x-input-label value="Name" />
-                <x-text-input placeholder="password" wire:model="password" type="password" />
-                <x-input-error :messages="$errors->get('password')" />
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" wire:model="email" class="mt-1 block w-full border rounded-md p-2">
+                @error('email')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" wire:model="password"
+                    class="mt-1 block w-full border rounded-md p-2">
+                @error('password')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <div>
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" id="password_confirmation" wire:model="password_confirmation"
-                    class="border rounded p-2 w-full">
+                <label for="password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input type="password" wire:model="password_confirmation"
+                    class="mt-1 block w-full border rounded-md p-2">
+                @error('password_confirmation')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
-            <x-primary-button tyepe="submit">Register</x-primary-button>
 
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Rigister
+            </button>
+        </form>
 
-        </div>
-    </form>
+        @section('success')
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endsection
 
+        <p class="mt-4">
+            Already have an account? <a href="{{ route('login') }}" class="text-blue-500 hover:underline">SingIn</a>
+        </p>
+    </div>
 </div>

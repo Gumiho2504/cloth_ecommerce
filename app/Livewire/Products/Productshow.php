@@ -18,13 +18,14 @@ class Productshow extends Component
 
 
     public $product;
-    #[Url()]
+    //#[Url()]
     public int $color_id;
-    #[Url()]
+    // #[Url()]
     public int $size_id;
     public $stockByColor;
     public $quantity = 1;
     public $image_path;
+    public bool $isCanAddToCarts = true;
 
     public function placeholder()
     {
@@ -35,10 +36,9 @@ class Productshow extends Component
         </div>
         HTML;
     }
-
     public function mount($slug)
     {
-        $this->product = Product::where('slug', $slug)->first();
+        $this->product = Product::where('slug', $slug)->firstOrFail();
         $this->color_id = $this->product->colors()->first()->id;
         $this->size_id = $this->product->sizes()->first()->id;
         // dump([$this->color_id, $this->size_id]);
@@ -80,6 +80,9 @@ class Productshow extends Component
             }
         }
     }
+
+
+
 
 
 

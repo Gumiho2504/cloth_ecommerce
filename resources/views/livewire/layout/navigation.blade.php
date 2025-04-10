@@ -1,4 +1,4 @@
-<div class=" sticky flex px-5 py-3 mt-3 justify-between items-center">
+<div class=" sticky top-2 bg-white flex px-5 py-3 mt-3 justify-between items-center border-b-2 border-slate-500 z-10">
     @php
         $pages = ['Home', 'Category', 'About', 'Contact'];
     @endphp

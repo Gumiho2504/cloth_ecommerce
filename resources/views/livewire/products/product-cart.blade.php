@@ -1,4 +1,5 @@
-<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<div
+    class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 animate-fade-in duration-1000 delay-200 ease-in-out">
     <a href="#">
         <img class="p-8 rounded-t-lg" src="{{ $product->image }}" alt="product image" />
     </a>
