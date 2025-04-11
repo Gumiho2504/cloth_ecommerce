@@ -13,7 +13,13 @@ class Order extends Component
     public function render()
     {
         $orders = OrderService::getOrders(Auth::id());
-        dump($orders);
+
         return view('livewire.pages.order', compact('orders'));
+    }
+
+
+    public function deleteOrder($order_id)
+    {
+        OrderService::deleteOrder(Auth::id(), $order_id);
     }
 }

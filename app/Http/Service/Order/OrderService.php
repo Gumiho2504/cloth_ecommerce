@@ -8,12 +8,13 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductVariation;
+use Illuminate\Support\Facades\Gate;
 
 class OrderService implements IOrderService
 {
     public static function placeOrder($user_id)
     {
-
+        Gate::authorize('create', Order::class);
         $cart = CartService::getCart($user_id);
 
         if ($cart->cartItems->count() > 0) {
@@ -27,7 +28,13 @@ class OrderService implements IOrderService
 
     public static function getOrders($user_id)
     {
-        return Order::with('orderItems')->where('user_id', $user_id)->get();
+
+        $orders = Order::with('orderItems')->where('user_id', $user_id)->get();
+        foreach ($orders as $order) {
+            Gate::authorize('view', $order);
+        }
+
+        return $orders;
     }
 
 
@@ -71,5 +78,13 @@ class OrderService implements IOrderService
             $orderItems[] = $itemOrder;
         }
         return $orderItems;
+    }
+
+
+    public static function deleteOrder($user_id, $order_id)
+    {
+        $order = Order::findOrFail($order_id);
+        Gate::authorize('delete', $order);
+        $order->delete();
     }
 }

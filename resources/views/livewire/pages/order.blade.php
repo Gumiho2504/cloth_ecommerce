@@ -9,7 +9,10 @@
     <div class="mt-4 flex flex-col space-y-3">
         @forelse ($orders as $order)
             <div class="border border-dotted rounded-xl p-4 max-w-md">
-                <h4>Order Id : {{ $order->id }}</h4>
+                <div class=" flex justify-between">
+                    <h4>Order Id : {{ $order->id }}</h4>
+                    <button wire:click="deleteOrder({{ $order->id }})" class=" text-md text-red-600">Delete</button>
+                </div>
                 <div>
                     @foreach ($order->orderItems as $item)
                         <p>{{ $item->product->name }} : {{ $item->quantity }} </p>
